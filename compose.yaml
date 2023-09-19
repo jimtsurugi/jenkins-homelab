@@ -1,0 +1,17 @@
+services:
+  jenkins:
+    image: "jamesacooper/jenkins-homelab"
+    ports: 
+      - 8080:8080
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client:ro
+    environment:
+      DOCKER_CERT_PATH: "/certs/client"
+      DOCKER_TLS_VERIFY: "1"
+    restart: unless-stopped
+
+volumes:
+  jenkins-data:
+  jenkins-docker-certs:
+
